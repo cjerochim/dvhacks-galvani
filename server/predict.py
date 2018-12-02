@@ -1,7 +1,6 @@
 import json
 from sklearn.externals import joblib
-from sklearn import preprocessing
-
+from sklearn.preprocessing import LabelEncoder
 
 
 # Hander
@@ -13,11 +12,11 @@ def handler(event, context):
     model = joblib.load('model.pkl')
     print("Loaded Model")
     print(f"Body is: {body}")
-    
+
     # encode values
     workingHours = body["workingHours"]
 
-    le = preprocessing.LabelEncoder()
+    le = LabelEncoder()
     le.fit(['no response', 'not same day', 'same day', 'next day', '> 5 days'])
     engagement = le.transform(body["engagement"])
 

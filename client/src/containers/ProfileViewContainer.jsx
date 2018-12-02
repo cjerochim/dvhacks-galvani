@@ -1,6 +1,16 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { requestData, setViewType, selectDay } from '../redux/reducers/appReducer';
+
 import ProfileView from '../components/ProfileView/ProfileView';
 
 const mapStateToProps = ({ app: { date, data, type } }) => ({ date, data, type });
 
-export default connect(mapStateToProps, null)(ProfileView);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  requestData,
+  setViewType,
+  selectDay,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileView);

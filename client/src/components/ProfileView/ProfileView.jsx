@@ -1,68 +1,51 @@
 import React, { Component } from 'react';
-import { range, compose, map } from 'ramda';
+import { map, prop, dropLast } from 'ramda';
 
 import Chart from '../Chart/Chart';
 import View from '../View/View';
-import ActionList from '../ActionList/ActionList';
+import ActionListContainer from '../../containers/ActionListContainer';
+// import ActionList from '../ActionList/ActionList';
 
 import './ProfileView.scss';
-
-import utils from './utils';
 
 class ProfileView extends Component {
   constructor(props) {
     super(props);
-    
-    // TODO: Clean up, not ideal for running initial data for dispaly
-    const date = '2018-02-05';
-    const type = 'week';
-    const categories = type === 'month' ? utils.getDaysForMonth(date) : utils.getDaysForWeek(date);
-    // Generate data
-    const randomValueGen = () => utils.randomRange(0, 0.1);
-    const data = compose(map(randomValueGen), range(0))(categories.length);
-
-    this.state = {
-      date,
-      type,
-      categories,
-      data,
-    };
-
-
     this.onSelect = this.onSelect.bind(this);
     this.onMonth = this.onMonth.bind(this);
     this.onWeek = this.onWeek.bind(this);
   }
 
-  onSelect(category) {
-    console.log('select', category);
+  componentDidMount() {
+    const { requestData } = this.props;
+    requestData();
+  }
+
+  onSelect(date) {
+    const { selectDay } = this.props;
+    selectDay(date);
   }
 
   onMonth() {
-    const { date } = this.state;
-    const categories = utils.getDaysForMonth(date);
-    const randomValueGen = () => utils.randomRange(0, 0.1);
-    const data = compose(map(randomValueGen), range(0))(categories.length);
-    this.setState({ type: 'month', categories, data });
+    const { setViewType } = this.props;
+    setViewType('month');
   }
 
   onWeek() {
-    const { date } = this.state;
-    const categories = utils.getDaysForWeek(date);
-    const randomValueGen = () => utils.randomRange(0, 0.1);
-    const data = compose(map(randomValueGen), range(0))(categories.length);
-    this.setState({ type: 'week', categories, data });
+    const { setViewType } = this.props;
+    setViewType('week');
   }
 
   render() {
-    const {
-      date,
-      type,
-      categories,
-      data,
-    } = this.state;
+    // const { categories } = this.state;
+    const { actions, date, data, type } = this.props;
 
-    const { actions } = this.props;
+    // Quick hack to show month vs year
+    const results = type === 'month' ? data : dropLast(data.length - 7, data);
+    // Quick hack to generate the formatting of the dates for week and month
+    const categories = map(prop('date'))(results);
+    // display sentiment
+    const sentimentResults = map(prop('sentiment'))(results);
 
     return (
       <View>
@@ -74,10 +57,9 @@ class ProfileView extends Component {
             onMonth={this.onMonth}
             onSelect={this.onSelect}
             categories={categories}
-            data={data}
+            data={sentimentResults}
           />
-
-          <ActionList list={actions} />
+          <ActionListContainer />
         </div>
       </View>
     );

@@ -45,7 +45,7 @@ const parseDates = (rawData) => {
 // around the sentiment thresholds and clear actions
 const getAction = (sentiment) => {
   // Everything is good in life carry on
-  if (sentiment > 0.6) return [];
+  if (sentiment > 0.7) return [];
   // Ok... that's it I'm over it.
   if (sentiment <= 0.2) return [{ id: '23434', title: 'Catch-up', text: 'Locked in a meeting to have a coffee and catch-up' }];
   // Umm... something needs to happen here
@@ -54,6 +54,8 @@ const getAction = (sentiment) => {
   if (sentiment <= 0.4) return [{ id: '23425', title: 'Working waay to many hours', text: 'Why don\'t you try to leave your laptop at work' }];
   // Not soo cool, we're ok but could be better
   if (sentiment <= 0.6) return [{ id: '24235656', title: 'Are you ok?', text: 'Have a break, get some fresh air' }];
+  // Just a check-in
+  if (sentiment <= 0.7) return [{ id: 'sdssdf', title: 'You\'re doing great!', text: 'Is there anything you need?' }];
   return [];
 };
 

@@ -8,7 +8,7 @@
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "stats": "webpack --config webpack.stats.js",
-    "deploy": "npx netlify deploy --prod",
+    "deploy": "npx netlify deploy --dir=./dist --prod",
     "lint": "eslint --ext=jsx,js src",
     "lint:fix": "eslint --fix --ext=jsx,js src",
     "prepush": "npm run lint"

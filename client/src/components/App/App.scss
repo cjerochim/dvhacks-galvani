@@ -1,0 +1,16 @@
+.app {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.app__main {
+  position: relative;
+  padding-bottom: 3em;
+}
+
+.app__version {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}

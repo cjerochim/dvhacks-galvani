@@ -1,0 +1,21 @@
+.action-list {
+  position: relative;
+  margin: 2em 0;
+}
+
+.action-list__title {
+  font-size: 1.4em;
+  margin: 0;
+}
+
+.action-list__list {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.action-list__list > li {
+  position: relative;
+  margin: 1.1em 0px;
+}

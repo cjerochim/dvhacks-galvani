@@ -1,0 +1,30 @@
+.action-card {
+  position: relative;
+  padding: 1em 1em 1em 2.1em;
+  background-color: #fff;
+  max-width: 38em;
+  border-radius: 0.3em;
+  overflow: hidden;
+}
+
+.action-card:before {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 0.6em;
+  height: 100%;
+  background-color: #33BBA3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.action-card__title, .action-card__text {
+  font-size: 0.9em;
+  margin: 0.4em 0;
+}
+
+
+.action-card__title {
+  font-weight: 700;
+}

@@ -1,0 +1,12 @@
+
+@import "../../assets/styles/mixins/_all";
+
+.view {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.view--center {
+  @include centerChildren;
+}

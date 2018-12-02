@@ -1,0 +1,59 @@
+.chart {
+
+}
+
+.chart__nav-list {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.chart__nav-list > li {
+  position: relative;
+  display: inline-block;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.chart__nav-list > li:first-child {
+  margin-left: 0;
+}
+
+.chart__nav-list > li:last-child {
+  margin-right: 0;
+}
+
+.chart__title {
+  margin: 0;
+}
+
+.chart__title--primary {
+  margin: 0.7em 0;
+}
+
+.chart__title--secondary {
+  margin-left: 0.9em;
+  margin-bottom: 1em;
+}
+
+.chart__container {
+  position: relative;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.chart__header, .chart__body {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.chart__body {
+  position: relative;
+  background-color: #fff;
+  padding: 1.6em 0 1.1em 0;
+  border-radius: 0.3em;
+  padding-right: 1em;
+}
+

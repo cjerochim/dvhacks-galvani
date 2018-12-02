@@ -1,38 +1,7 @@
 import json
 from sklearn.externals import joblib
-from sklearn.preprocessing import LabelEncoder
-from sklearn.ensemble import RandomForestClassifier
+from sklearn import preprocessing
 
-# Encode class
-class MultiColumnLabelEncoder:
-    def __init__(self, columns=None):
-        self.columns = columns
-
-    def fit(self, X, y=None):
-        return self
-
-    def transform(self, X):
-        """
-        Transforms columns of X specified in self.columns using
-        LabelEncoder(). If no columns specified, transforms all
-        columns in X.
-        """
-
-        output = X.copy()
-        if self.columns is not None:
-            for col in self.columns:
-                le = preprocessing.LabelEncoder()
-                le.fit(output[col])
-                # print(list(le.classes_))
-
-                output[col] = LabelEncoder().fit_transform(output[col])
-        else:
-            for colname, col in output.iteritems():
-                output[colname] = LabelEncoder().fit_transform(col)
-        return output
-
-    def fit_transform(self, X, y=None):
-        return self.fit(X, y).transform(X)
 
 
 # Hander
@@ -44,14 +13,24 @@ def handler(event, context):
     model = joblib.load('model.pkl')
     print("Loaded Model")
     print(f"Body is: {body}")
-
-    # Attributes
+    
+    # encode values
     workingHours = body["workingHours"]
-    engagement = body["engagement"]
-    emailBodyTextReceived = body["emailBodyTextReceived"]
-    emailBodyTextSent = body["emailBodyTextSent"]
-    pressure = body["pressure"]
 
+    le = preprocessing.LabelEncoder()
+    le.fit(['no response', 'not same day', 'same day', 'next day', '> 5 days'])
+    engagement = le.transform(body["engagement"])
+
+    le.fit(['happy', 'not happy'])
+    emailBodyTextReceived = le.transform(body["emailBodyTextReceived"])
+
+    le.fit(['happy', 'not happy'])
+    emailBodyTextSent = le.transform(body["emailBodyTextSent"])
+
+    le.fit(['happy', 'not happy'])
+    pressure = le.transform(body["pressure"])
+
+    # make prediction
     outcome = model.predict_proba([[workingHours, engagement, emailBodyTextReceived, emailBodyTextSent, pressure]])
     print(outcome)
 

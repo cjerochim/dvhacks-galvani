@@ -18,7 +18,6 @@ const Chart = ({
   onMonth,
 }) => {
 
-
   // TODO: Move into separate file
   const options = {
     chart: {
@@ -51,6 +50,7 @@ const Chart = ({
         allowPointSelect: true,
         point: {
           events: {
+            // Keep inside component to trigger, not the cleanest approach
             click({ point: { category } }) {
               onSelect(category);
             },
@@ -74,8 +74,8 @@ const Chart = ({
         <h2 className="chart__title chart__title--primary">Timeline</h2>
         <nav className="chart__nav">
           <ul className="chart__nav-list">
-            <li><button className={btnWeek} onClick={onWeek}>Week</button></li>
-            <li><button className={btnMonth} onClick={onMonth}>Month</button></li>
+            <li><button type="button" className={btnWeek} onClick={onWeek}>Week</button></li>
+            <li><button type="button" className={btnMonth} onClick={onMonth}>Month</button></li>
           </ul>
         </nav>
       </header>

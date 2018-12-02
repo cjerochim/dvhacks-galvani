@@ -48,6 +48,8 @@ Major libraries include the following:
 - Highcharts
 - Webpack
 
+The Redux implementation follows the [Ducks Proposal](https://github.com/erikras/ducks-modular-redux)
+
 #### Build Application
 The application requires node and npm to be installed
 

@@ -5,8 +5,8 @@ import {
   prop,
 } from 'ramda';
 
-import request from 'axios';
 import utils from './utils';
+import services from '../../services/requestService';
 
 import pkg from '../../../package.json';
 
@@ -100,11 +100,15 @@ export const selectDay = date => ({ type: SELECT_DAY, payload: { date } });
 
 export const requestData = () => (dispatch) => {
   dispatch(setRequesting(true));
-  console.log(userHistory);
-
-  setTimeout(() => {
-    const parsedDates = utils.parseDates(rawData);
-    dispatch(setData(parsedDates));
-    dispatch(setRequesting(false));
-  }, 2000);
+  services.requestBatchPredictions(userHistory)
+    .then(({ data }) => {
+      // Parse dates merge duplicate events for a day
+      const parsedDates = utils.parseDates(data);
+      // Update state
+      dispatch(setData(parsedDates));
+      // Hide Loader
+      dispatch(setRequesting(false));
+    })
+    // TODO - Manage error state
+    .catch(console.error);
 };

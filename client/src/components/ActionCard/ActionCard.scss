@@ -1,3 +1,14 @@
+@keyframes showCard {
+  0%   { 
+    transform: translate3d(0, -0.5em, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
 .action-card {
   position: relative;
   padding: 1em 1em 1em 2.1em;
@@ -5,6 +16,11 @@
   max-width: 38em;
   border-radius: 0.3em;
   overflow: hidden;
+
+  animation-name: showCard;
+  animation-duration: 0.4s; 
+  animation-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955); 
+  animation-fill-mode: forwards; 
 }
 
 .action-card:before {

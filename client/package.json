@@ -8,22 +8,10 @@
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "stats": "webpack --config webpack.stats.js",
+    "deploy": "npx netlify deploy --prod",
     "lint": "eslint --ext=jsx,js src",
     "lint:fix": "eslint --fix --ext=jsx,js src",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest  --coverage",
     "prepush": "npm run lint"
-  },
-  "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>__tests__/setup/setupEnzyme.js",
-    "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/setup/"
-    ],
-    "verbose": true,
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ]
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -63,11 +51,8 @@
     "@babel/runtime": "^7.1.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.6",
-    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "css-loader": "^1.0.0",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^5.6.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-import-resolver-webpack": "^0.10.1",
@@ -75,8 +60,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "file-loader": "^1.1.11",
-    "jest": "^23.6.0",
-    "jest-enzyme": "^7.0.0",
+    "netlify-cli": "^2.2.3",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.21.0",

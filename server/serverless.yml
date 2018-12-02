@@ -34,3 +34,10 @@ functions:
           path: /predict
           method: post
           cors: true
+  batch:
+    handler: predict.batch
+    events:
+      - http:
+          path: /predictions
+          method: post
+          cors: true

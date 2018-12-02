@@ -10,6 +10,11 @@ import './ProfileView.scss';
 class ProfileView extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isActive: true,
+    };
+
     this.onSelect = this.onSelect.bind(this);
     this.onMonth = this.onMonth.bind(this);
     this.onWeek = this.onWeek.bind(this);
@@ -20,6 +25,23 @@ class ProfileView extends Component {
     const { requestData } = this.props;
     requestData();
   }
+
+
+  componentDidUpdate(prevProps) {
+    const { type } = this.props;
+    // Due to the weird animation from high-charts when transition between states
+    // Toggling isActive for charts to fade and reveal on transitions
+    if (prevProps.type !== type) {
+      // Hide Chart
+      this.setState({ isActive: false });
+
+      setTimeout(() => {
+        // Reveal chart
+        this.setState({ isActive: true });
+      }, 200);
+    }
+  }
+
 
   // on a column being selected
   onSelect(date) {
@@ -40,6 +62,8 @@ class ProfileView extends Component {
   render() {
     // const { categories } = this.state;
     const { date, data, type } = this.props;
+
+    const { isActive } = this.state;
     // Quick hack to show month vs year
     const results = type === 'month' ? data : dropLast(data.length - 7, data);
     // Quick hack to generate the formatting of the dates for week and month
@@ -57,6 +81,7 @@ class ProfileView extends Component {
             onSelect={this.onSelect}
             categories={categories}
             data={sentimentResults}
+            isActive={isActive}
           />
           <ActionListContainer />
         </div>

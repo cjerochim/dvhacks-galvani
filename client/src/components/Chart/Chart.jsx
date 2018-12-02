@@ -16,6 +16,7 @@ const Chart = ({
   onSelect,
   onWeek,
   onMonth,
+  isActive,
 }) => {
 
   // TODO: Move into separate file
@@ -36,6 +37,7 @@ const Chart = ({
     plotOptions: {
       column: {
         borderWidth: 0,
+        
         states: {
           hover: {
             color: '#B49BFF',
@@ -48,6 +50,7 @@ const Chart = ({
       series: {
         cursor: 'pointer',
         allowPointSelect: true,
+        animation: false,
         point: {
           events: {
             // Keep inside component to trigger, not the cleanest approach
@@ -67,9 +70,10 @@ const Chart = ({
   // Manage button visual state
   const btnWeek = classnames('chart__btn', { 'is--active': type === 'week' });
   const btnMonth = classnames('chart__btn', { 'is--active': type === 'month' });
+  const componentState = classnames('chart', { 'chart--is-active': isActive });
 
   return (
-    <section className="chart">
+    <section className={componentState}>
       <header className="chart__header">
         <h2 className="chart__title chart__title--primary">Timeline</h2>
         <nav className="chart__nav">
@@ -85,10 +89,12 @@ const Chart = ({
             {type === 'month' ? moment(date).format('MMMM YYYY') : moment(date).format('dddd Do YYYY') }
           </h3>
         </div>
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={options}
-        />
+        <div className="chart__graph">
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={options}
+          />
+        </div>
       </div>
     </section>
   );

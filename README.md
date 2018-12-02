@@ -34,7 +34,9 @@ Humany is a human resources management platform that helps medium to large busin
 #### What is the machine learning model?
   Classification by DecisionTree, Multi-layer Perceptron
 
-
+#### Known issues
+  The feature "pressure" in the script "employee_sentiment_prediction.py" should be categorical with any value of "2 - 5 (days)", "5 - 20 (days)", "20 - 40 (days)" and "40 - 60 (days)" instead of binary with a value of "happy" or "not happy".
+  
 ### Client
 #### Languages
 The web front-end is using JavaScript (es6), SCSS, HTML, JSON,

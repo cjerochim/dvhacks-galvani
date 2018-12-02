@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import LoaderContainer from '../../containers/LoaderContainer';
 import VersionContainer from '../../containers/VersionContainer';
 
 import MainBar from '../MainBar/MainBar';
@@ -8,6 +9,7 @@ import './App.scss';
 
 const App = ({ children }) => (
   <div className="app">
+    <LoaderContainer />
     <MainBar />
     <main className="app__main">
       {children}

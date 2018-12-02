@@ -1,0 +1,39 @@
+.loader {
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0, 0.7);
+
+  transition-property: display, visibility;
+  transition-duration: 2s;
+  transition-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+
+  display: none;
+  visibility: hidden;
+
+  z-index: 1000;
+}
+
+
+.loader--is-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: visible;
+}
+
+.loader__inner {
+  position: relative;
+  padding: 0.5em 1em;
+  background-color: transparent;
+  border-radius: 0.2em;
+  border: 1px solid #ccc;
+}
+
+.loader__txt {
+  position: relative;
+  margin: 0;
+  color: #fff;
+}

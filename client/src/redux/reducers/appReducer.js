@@ -5,9 +5,8 @@ export const SET_REQUESTING = 'app/request/SET_REQUESTING';
 
 const initialState = {
   version: pkg.version,
-  isRequesting: false,
+  isRequesting: true,
   error: {},
-  
 };
 
 export default (state = initialState, action) => {

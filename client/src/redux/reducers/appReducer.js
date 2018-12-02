@@ -1,8 +1,18 @@
-import { merge, head, compose, prop } from 'ramda';
+import {
+  merge,
+  head,
+  compose,
+  prop,
+} from 'ramda';
 
+import request from 'axios';
 import utils from './utils';
 
 import pkg from '../../../package.json';
+
+// Load in sample data rand run a batch request to the model
+import userHistory from '../../data/history.json';
+
 
 export const SET_REQUESTING = 'app/request/SET_REQUESTING';
 export const SET_VIEW_TYPE = 'app/timeline/SET_VIEW_TYPE';
@@ -90,6 +100,8 @@ export const selectDay = date => ({ type: SELECT_DAY, payload: { date } });
 
 export const requestData = () => (dispatch) => {
   dispatch(setRequesting(true));
+  console.log(userHistory);
+
   setTimeout(() => {
     const parsedDates = utils.parseDates(rawData);
     dispatch(setData(parsedDates));

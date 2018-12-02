@@ -4,7 +4,6 @@ import { map, prop, dropLast } from 'ramda';
 import Chart from '../Chart/Chart';
 import View from '../View/View';
 import ActionListContainer from '../../containers/ActionListContainer';
-// import ActionList from '../ActionList/ActionList';
 
 import './ProfileView.scss';
 
@@ -16,11 +15,13 @@ class ProfileView extends Component {
     this.onWeek = this.onWeek.bind(this);
   }
 
+  // Batch data to generate historical data of user
   componentDidMount() {
     const { requestData } = this.props;
     requestData();
   }
 
+  // on a column being selected
   onSelect(date) {
     const { selectDay } = this.props;
     selectDay(date);
@@ -38,15 +39,13 @@ class ProfileView extends Component {
 
   render() {
     // const { categories } = this.state;
-    const { actions, date, data, type } = this.props;
-
+    const { date, data, type } = this.props;
     // Quick hack to show month vs year
     const results = type === 'month' ? data : dropLast(data.length - 7, data);
     // Quick hack to generate the formatting of the dates for week and month
     const categories = map(prop('date'))(results);
     // display sentiment
     const sentimentResults = map(prop('sentiment'))(results);
-
     return (
       <View>
         <div className="profile">
@@ -65,18 +64,5 @@ class ProfileView extends Component {
     );
   }
 }
-
-ProfileView.defaultProps = {
-  actions: [{
-    id: 'ewqewrq',
-    title: 'Activate Snooze mode for emails between 7pm and 10am',
-    text: 'Implemented on the 7-11-2018',
-  },
-  {
-    id: '3255qewrq',
-    title: 'Activate Snooze mode for emails between 7pm and 10am',
-    text: 'Implemented on the 7-11-2018',
-  }],
-};
 
 export default ProfileView;

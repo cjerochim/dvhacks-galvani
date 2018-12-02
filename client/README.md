@@ -2,6 +2,8 @@
 
 Humany is a human resources management platform that helps medium to large businesses manage and optimise the health of their employees.
 
+[Preview Link](https://5c03c3f6dd28ef3ef32fc789--dv-hacks.netlify.com)
+
 ## The details
 ### Model
 

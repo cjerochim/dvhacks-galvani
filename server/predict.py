@@ -18,16 +18,16 @@ def handler(event, context):
 
     le = LabelEncoder()
     le.fit(['no response', 'not same day', 'same day', 'next day', '> 5 days'])
-    engagement = le.transform(body["engagement"])
+    engagement = le.transform([body["engagement"]])
 
     le.fit(['happy', 'not happy'])
-    emailBodyTextReceived = le.transform(body["emailBodyTextReceived"])
+    emailBodyTextReceived = le.transform([body["emailBodyTextReceived"]])
 
     le.fit(['happy', 'not happy'])
-    emailBodyTextSent = le.transform(body["emailBodyTextSent"])
+    emailBodyTextSent = le.transform([body["emailBodyTextSent"]])
 
     le.fit(['happy', 'not happy'])
-    pressure = le.transform(body["pressure"])
+    pressure = le.transform([body["pressure"]])
 
     # make prediction
     outcome = model.predict_proba([[workingHours, engagement, emailBodyTextReceived, emailBodyTextSent, pressure]])

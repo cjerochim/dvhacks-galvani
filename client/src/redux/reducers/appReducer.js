@@ -7,55 +7,16 @@ import {
 
 import utils from './utils';
 import services from '../../services/requestService';
-
 import pkg from '../../../package.json';
 
 // Load in sample data rand run a batch request to the model
 import userHistory from '../../data/history.json';
 
-
 export const SET_REQUESTING = 'app/request/SET_REQUESTING';
 export const SET_VIEW_TYPE = 'app/timeline/SET_VIEW_TYPE';
 export const SET_DATE = 'app/timeline/SET_DATE';
 export const SET_DATA = 'app/timeline/SET_DATA';
-
 export const SELECT_DAY = 'app/timeline/SELECT_DAY';
-
-// Raw data
-const rawData = [
-  { date: '2018-02-01', sentiment: 0.1 },
-  { date: '2018-02-01', sentiment: 0.3 },
-  { date: '2018-02-01', sentiment: 0.3 },
-  { date: '2018-02-01', sentiment: 0.3 },
-  { date: '2018-02-01', sentiment: 0.3 },
-  { date: '2018-02-01', sentiment: 0.7 },
-  { date: '2018-02-02', sentiment: 0.2 },
-  { date: '2018-02-03', sentiment: 0.2 },
-  { date: '2018-02-04', sentiment: 0.2 },
-  { date: '2018-02-05', sentiment: 0.2 },
-  { date: '2018-02-06', sentiment: 0.2 },
-  { date: '2018-02-06', sentiment: 0.3 },
-  { date: '2018-02-06', sentiment: 0.2 },
-  { date: '2018-02-06', sentiment: 0.2 },
-  { date: '2018-02-07', sentiment: 0.2 },
-  { date: '2018-02-08', sentiment: 0.2 },
-  { date: '2018-02-09', sentiment: 0.2 },
-  { date: '2018-02-10', sentiment: 0.2 },
-  { date: '2018-02-11', sentiment: 0.2 },
-  { date: '2018-02-12', sentiment: 0.2 },
-  { date: '2018-02-13', sentiment: 0.2 },
-  { date: '2018-02-14', sentiment: 0.2 },
-  { date: '2018-02-15', sentiment: 0.2 },
-  { date: '2018-02-16', sentiment: 0.2 },
-  { date: '2018-02-17', sentiment: 0.2 },
-  { date: '2018-02-18', sentiment: 0.2 },
-  { date: '2018-02-19', sentiment: 0.2 },
-  { date: '2018-02-20', sentiment: 0.2 },
-  { date: '2018-02-21', sentiment: 0.2 },
-  { date: '2018-02-22', sentiment: 0.2 },
-  { date: '2018-02-23', sentiment: 0.2 },
-  { date: '2018-02-24', sentiment: 0.2 },
-];
 
 const initialState = {
   version: pkg.version,

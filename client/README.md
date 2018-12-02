@@ -1,75 +1,89 @@
-# React - Boilerplate
+# DV AI Hack - Humany
+
+Humany is a human resources management platform that helps medium to large businesses manage and optimise the health of their employees.
+
+[Preview Link](https://5c03aef967610c314ba03cf7--dv-hacks.netlify.com/)
+
+## The details
+### Model
+
+#### Languages
+- Python (3.6)
+
+#### Libraries
+- numpy
+- pandas
+- sklearn
+- xgboost
+- fasttext
+- csv
+- nltk
+- matplotlib
+
+#### Dataset
+  The email text bodies were simulated based on IMDB comments; Additional features were also simulated for the binary classification model.
+
+#### how to build the application
+  Use script  “email_sentiment_analysis.py” to load emails in CSV files and applies sentimental analysis to classify each individual
+ email as “Happy” or “Not happy” based on the text body.
+ Subsequently, the labels classified from the text will be used as a feature with other features in the script “employee_sentiment_prediction.py”  from the business data to build another machine model for employee sentimental analysis. Due to the tight time constraint, the author apologise for not being able to glue the two scripts for a further consistent work.
+
+#### how can i extend the dataset if I need to?
+  The script “email_sentiment_analysis.py” loads a csv file of labeled text as the input.  Other labeled text datasets in CSV file can be used as the input to train the model.  Note that the script uses Facebook library fastText and runs a Multi-layer Perceptron and may take several minutes to build the model. The dataset in the script “employee_sentiment_prediction.py” is simulated and self-contained. Extension of the dataset can be achieved by simple configuration in the script or by a trivial modification to load data from files.
+
+#### What is the machine learning model?
+  Classification by DecisionTree, Multi-layer Perceptron
 
 
-## Moved to Webpack 4 due to the following benefits:
-- code splitting
-- Lazy loading
-- Bundle Analyser
+### Client
+#### Languages
+The web front-end is using JavaScript (es6), SCSS, HTML, JSON,
 
-## Features
+### Libraries
+Major libraries include the following:
 - React
 - Redux
 - React Router
-- React Router Redux
-- Redux Persist (Basic implementation, stores reducer to session storage)
-- Redux Saga
-- Redux Saga Routes
-- Loadable (Code Splitting)
-- Storybook
-- Linting (Airbnb rules)
-  - pre-push lint check on commit
-- Jest / Enzyme configured
-  - Single test
-  - Test Watching
-  - Test Coverage
-- Defined Alias's
-  - styles
-  - images (For Global)
-  - decorators (For Storybook)
+- React Router redux
+- Highcharts
+- Webpack
 
-## TODO 
-- Simplify build (Remove animations from routes)
-- Add base styles from UI patterns
-- Show example of pre-fetched components vs lazy loading components
-- Add route component - https://gist.github.com/carlqt/6e4926d250d9e185e9f67a6ce804ca01
-- ENV config file (Load config at runtime, not at compile time)
-- (Prettier)[https://github.com/prettier/prettier}]
-- Unit tests
+#### Build Application
+The application requires node and npm to be installed
 
-## Issues
-- Updated storybook to work with the latest babel 7
-- Latest Storybook is not displaying actions when triggered, need to explore issue
+To start development in watch mode run the following command
+```npm run start```
+
+To build for production
+```npm run build```
+
+To view stats about the build
+```npm run stats```
+
+#### Hosting
+Client hosting is ran through Netlify, there's a deploy script used. Ideally this would be setup as part of the CI/CD process
+
+To deploy to Netlify 
+```npm run deploy```
 
 
-## Application approach
-- Routes
-- View
-- Logic
-- State
-- Persist
+### Server
+The server is running on AWS using the "Serverless framework"
 
-## React 
+Ensure you have Serverless installed and account credentials
 
-## Redux
-### Implmentation of redux
-Follows the ducks proposal, (find out more)[https://github.com/erikras/ducks-modular-redux]
 
-## Routing / Redux Routing
-## Sagas
-## Code splitting / Performance
-## CSS Methodology
-- Boxmodel
-- B.E.M.
-## Animation
-## Storybook
-## Testing
+#### Languages 
+Python / YML (Yay for YML)
 
-## Linting
-The boilerplate follows the AirBnb rules for linting. Reference to the [rules](https://github.com/airbnb/javascript)
+### Libraries 
+ - scikit-learn
 
-### Commands
-- ```npm run lint``` to run a lint check.
-- ```npm run lint:fix``` to resolve linting issues, may not fix all.
+### Build/Run Application
+To deploy the server, run the following commend
 
-## Configuration (TODO)
-Create a config folder with each environment defined as ```properties.[ENV].json``` e.g. for dev environment it would be ```properties.dev.json```, when deployed the file will be renamed to ```properties.json```, this will be loaded by the application. This allows the configuration to be defined at an environment level, not during the bundling of the JS file. 
+```
+ sls deploy
+```
+
+
